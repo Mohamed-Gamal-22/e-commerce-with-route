@@ -68,7 +68,7 @@ export default function Navbar() {
                   <i className="fa-brands fa-linkedin"></i>
                 </li>
               </div>
-              <li className="nav-item me-3">
+              <li className="nav-item ms-3">
                 <Link
                   className="nav-link active"
                   aria-current="page"
