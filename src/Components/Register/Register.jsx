@@ -29,7 +29,7 @@ export default function Register() {
   }
 
   let phoneRegex = /^01[0125][0-9]{8}$/gm;
-  let emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{3,5}$/;
+  let emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{3,5}$/;
 
   let schema = yup.object({
     name: yup

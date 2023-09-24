@@ -1,12 +1,14 @@
-import React, { useState } from "react";
-import style from "./Login.module.css";
+import React, { useContext, useState } from "react";
+// import style from "./Login.module.css";
 import { useFormik } from "formik";
 import * as yup from "yup"; // import all inside yup
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { RotatingLines } from "react-loader-spinner";
+import { UserContext } from "./../../Context/UserContext";
 
 export default function Login() {
+  let { setUserToken } = useContext(UserContext);
   let [backError, setBackError] = useState(null);
   let [loading, setLoading] = useState(false);
   let navigate = useNavigate();
@@ -24,6 +26,9 @@ export default function Login() {
     if (data.message === "success") {
       setLoading(false);
       alert("successfully");
+      // console.log(data.token);
+      localStorage.setItem("authToken", data.token);
+      setUserToken(data.token);
       navigate("/");
     }
   }
@@ -65,7 +70,6 @@ export default function Login() {
           ""
         )}
         <form onSubmit={formik.handleSubmit} /*formik fire when submit*/>
-
           {/* email input */}
           <label htmlFor="email">Email:</label>
           <input
@@ -83,7 +87,6 @@ export default function Login() {
               {formik.errors.email}
             </div>
           ) : null}
-
 
           {/* password input */}
           <label htmlFor="password">Password:</label>
@@ -117,7 +120,7 @@ export default function Login() {
                 visible={true}
               />
             ) : (
-              "Login" 
+              "Login"
             )}
           </button>
           <Link to="/register">Go To Register</Link>
